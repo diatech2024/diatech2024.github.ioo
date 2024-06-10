@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="width" content="width=device-width, initial-scale=1.0">
+    <title>Assistive Technologies</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1 style="font-family: 'Major Mono Display', monospace;">Sustainable Assistive Technologies</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tts.html">Products (Beta)</a>
+        <a href="shop.html">Shop</a>
+        <a href="types.html">Types</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <section class="shadow">
+            <ul>
+                <li><a class="cta2 shadow" href="https://makeitfable.com/glossary-term/screen-magnifier/"
+                        target="_blank">Screen Magnifiers</a></li> <br>
+                <li><a class="cta2 shadow"
+                        href="https://verbit.ai/what-is-voice-recognition-used-for-and-how-does-it-work/"
+                        target="_blank">Voice
+                        Recognition Software</a></li> <br>
+                <li><a class="cta2 shadow"
+                        href="https://www.tobii.com/learn-and-support/get-started/what-is-eye-tracking"
+                        target="_blank">Eye
+                        Tracking Devices</a></li> <br>
+                <li><a class="cta2 shadow"
+                        href="https://www.especialneeds.com/shop/assistive-technology/switches/switch-interfaces.html"
+                        target="_blank">Switch Interfaces</a></li> <br>
+                <li><a class="cta2 shadow"
+                        href="https://www.nad.org/resources/technology/assistive-listening/assistive-listening-systems-and-devices/"
+                        target="_blank">Hearing Aids and Assistive Listening Devices</a></li> <br>
+                <li><a class="cta2 shadow" href="https://takeleap.com/gesture-based-user-interface"
+                        target="_blank">Gesture-Based Interfaces</a>
+                </li> <br>
+                <li><a class="cta2 shadow" href="https://alan.app/blog/types-of-user-interface/" target="_blank">Inking
+                        and Stylus-Based
+                        Interfaces</a></li> <br>
+                <li><a class="cta2 shadow" href="https://www.afb.org/node/16207/refreshable-braille-displays"
+                        target="_blank">Refreshable Braille
+                        Displays</a></li> <br>
+                <li><a class="cta2 shadow"
+                        href="https://www.afb.org/blindness-and-low-vision/using-technology/assistive-technology-products/video-magnifiers"
+                        target="_blank">Closed-Circuit Television (CCTV) Magnifiers</a></li> <br>
+                <li><a class="cta2 shadow" href="https://abilitynet.org.uk/factsheets/introduction-screen-readers"
+                        target="_blank">Screen
+                        Readers</a></li> <br>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p class="aniamtion">© 2024 Assistive Technologies. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('.cta2');
+
+            // Trigger a reflow by accessing a property that requires layout calculation
+            links.forEach(link => link.offsetWidth);
+
+            links.forEach(link => {
+                link.addEventListener('mouseover', function () {
+                    link.classList.add('shadow');
+                });
+
+                link.addEventListener('mouseout', function () {
+                    link.classList.remove('shadow');
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

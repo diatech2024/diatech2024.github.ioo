@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" class="tts">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistive Technologies</title>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1 style="font-family: 'Major Mono Display', monospace;">Sustainable Assistive Technologies</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="tts.html">Products (Beta)</a>
+    <a href="shop.html">Shop</a>
+    <a href="types.html">Types</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <body>
+    <div class="container">
+      <div>
+        <h3>Text-to-Speech</h3>
+        <textarea id="text-to-speak" placeholder="Enter text here..."></textarea>
+        <div class="settings">
+          <label for="voice-select">Voice:</label>
+          <select id="voice-select"></select>
+        </div>
+        <div class="settings">
+          <label for="pitch">Pitch:</label>
+          <input id="pitch" type="range" min="0" max="2" value="1" step="0.1">
+        </div>
+        <div class="settings">
+          <label for="rate">Rate:</label>
+          <input id="rate" type="range" min="0.1" max="3" value="1" step="0.1">
+        </div>
+        <div class="settings">
+          <label for="volume">Volume:</label>
+          <input id="volume" type="range" min="0" max="1" value="1" step="0.1">
+        </div>
+        <button id="convert-button">Convert</button>
+        <button id="stop-button">Stop</button>
+      </div>
+      <div>
+        <h3>Speech Recognition</h3>
+        <textarea id="speech-to-text" placeholder="Speak here..."></textarea>
+        <button id="speech-recognition">Speech Recognition</button>
+      </div>
+    </div>
+    <script src="tts.js"></script>
+    <footer>
+      <p class="aniamtion">© 2024 Assistive Technologies. All rights reserved.</p>
+    </footer>
+  </body>
+
+</html>
