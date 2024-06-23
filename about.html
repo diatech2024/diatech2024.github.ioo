@@ -1,31 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assistive Technologies</title>
-  <link rel="stylesheet" href="index.css">
-  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrolling Navbar Example</title>
+<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Lato:400);
+  body {
+    font-family: Lato;
+    font-weight: 400;
+    font-size: 14px;
+    color: #10111F;
+    line-height: 1.5;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+  }
+  .line {
+    background-color: #10111F;
+  }
+  /* Variables */
+  :root {
+      --bg: #10111F;
+      --barsize: 15px;
+  }
+
+  /* General Styling */
+  .hr {
+      width: 100%;
+      height: 1px;
+      display: block;
+      position: relative;
+      margin-bottom: 0em;
+      padding: 2em 0;
+  }
+
+  .hr::before,
+  .hr::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: 50%;
+      left: 0;
+  }
+
+  .hr::before {
+      background: linear-gradient( 90deg, var(--bg) 0%, var(--bg) 50%, transparent 50%, transparent 100% );
+      background-size: var(--barsize);
+      background-position: center;
+      z-index: 1;
+  }
+
+  .hr::after {
+      transition: opacity 0.3s ease, animation 0.3s ease;
+      background: linear-gradient(
+          to right, 
+          #787A97 5%, 
+          #787A97 15%, 
+          #787A97 25%, 
+          #787A97 35%, 
+          #787A97 45%, 
+          #787A97 55%, 
+          #787A97 65%, 
+          #787A97 75%, 
+          #787A97 85%, 
+          #787A97 95%
+      );
+      background-size: 200%;
+      background-position: 0%;
+      animation: bar 15s linear infinite;
+  }
+
+  @keyframes bar {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+  }
+
+  /* Animated State */
+  .hr.anim::before {
+      background: linear-gradient( 
+          90deg, 
+          var(--bg) 0%, var(--bg) 5%, 
+          transparent 5%, transparent 10%, 
+          var(--bg) 10%, var(--bg) 15%, 
+          transparent 15%, transparent 20%, 
+          var(--bg) 20%, var(--bg) 25%,
+          transparent 25%, transparent 30%,
+          var(--bg) 30%, var(--bg) 35%, 
+          transparent 35%, transparent 40%, 
+          var(--bg) 40%, var(--bg) 45%, 
+          transparent 45%, transparent 50%, 
+          var(--bg) 50%, var(--bg) 55%,
+          transparent 55%, transparent 60%,
+          var(--bg) 60%, var(--bg) 65%,
+          transparent 65%, transparent 70%, 
+          var(--bg) 70%, var(--bg) 75%, 
+          transparent 75%, transparent 80%, 
+          var(--bg) 80%, var(--bg) 85%,
+          transparent 85%, transparent 90%,
+          var(--bg) 90%, var(--bg) 95%, 
+          transparent 95%, transparent 100% 
+      );
+      background-size: calc(var(--barsize) * 10);
+      background-position: center;
+      z-index: 1;
+      animation: bar 120s linear infinite;
+  }
+
+  a {
+    color: #10111F;
+    text-decoration: none;
+  }
+  header {
+    background-color: #10111F;
+    padding: 20px;
+    text-align: center;
+  }
+  header h1 {
+    font-family: 'Major Mono Display', monospace;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  h1{
+    font-family: 'Major Mono Display', monospace;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  #navbar {
+      background-color: #10111F;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0; /* Ensures it starts from the left edge */
+      display: block;
+      box-sizing: border-box; /* Include padding and border in total width */
+      transition: top 0.3s;
+      z-index: 1000;
+    
+  }
+
+  #navbar ul {
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+  }
+
+  #navbar li {
+      display: inline-block;
+      margin: 0 10px;
+      list-style-type: none;
+  }
+
+  #navbar .a {
+      color: #696B89;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      text-align: center;
+      font-size: 17px;
+  }
+
+  #navbar .a:hover {
+      background-color: #696B89;
+      color: #10111F;
+  }
+
+  #navbar .a i {
+    font-size: 24px;
+    margin-bottom: 5px;
+    margin-right: 2px;
+  }
+
+  .icon {
+    font-size: 10px;
+  }
+
+  .a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    color: #696B89;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .a i {
+    font-size: 24px; /* Adjust icon size as needed */
+    margin-bottom: 5px; /* Space between icon and text */
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #navbar .a span {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        color: white;
+        top: calc(100% + 5px);
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    #navbar .a:hover span {
+        display: block;
+    }
+    span {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      color: white;
+      top: calc(100% + 5px); /* Position the text below the icons with a little gap */
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap; /* Ensure text doesn't wrap */
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    li:hover span {
+      display: block;
+    }
+    img{
+      height: auto;
+      width: 400px;
+    }
+  }
+  img {
+    float: left;
+    width: 100%;
+    height: auto;
+  }
+  .hero {
+    text-align: center;
+  }
+
+  .hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    margin-bottom: 40px;
+  }
+  .cta {
+    background-color: #10111F;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  .cta:hover {
+    background-color: #fff;
+    color: #10111F;
+  }
+
+  .shadow2 {
+    position: relative;
+    background-color: black;
+    box-shadow: 0 0 20px 10px rgba(128, 128, 128, 0.5);
+  }
+  .features {
+    padding: 80px 20px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+  }
+
+  .feature-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .feature-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  section {
+    margin-bottom: 20px;
+  }
+  footer {
+    background-color: #10111F;
+    color: #fff;
+    padding: 1px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 14px;
+    color: #fff;
+  }
+  .right {
+    float: right;
+  }
+  main {
+    margin-left: 7px; 
+    margin-right: 7px; 
+  }
+</style>
 </head>
-
 <body>
-    <nav>
-    <a href="index.html">Home</a>
-    <a href="tts.html">Products (Beta)</a>
-    <a href="shop.html">Shop</a>
-    <a href="types.html">Types</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+
+<header>
+  <nav id="navbar">
+    <ul>
+      <li><a class="a" href="index.html" title="Home"><i class="fas fa-home"></i><span>Home</span></a></li>
+      <li><a class="a" href="tts.html" title="Services"><i class="fas fa-screwdriver-wrench"></i><span>Services</span></a></li>
+      <li><a class="a" href="shop.html" title="Shop"><i class="fas fa-cart-shopping"></i><span>Shop</span></a></li>
+      <li><a class="a" href="types.html" title="Types"><i class="fas fa-wheelchair"></i><span>Types</span></a></li>
+      <li><a class="a" href="about.html" title="About"><i class="fas fa-info-circle"></i><span>About</span></a></li>
+      <li><a class="a" href="contact.html" title="Contact"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+    </ul>
   </nav>
-  <header>
-    <h1 style="font-family: 'Major Mono Display', monospace;">Sustainable Assistive Technologies</h1>
-  </header>
-
-
+  <div style="margin-top: 100px;" class="line">
+    <b class="hr anim"></b>
+  </div>
+  <h1>Eco-Tech Solutions</h1>
+</header>
+<main>
   <section class="shadow">
     <h2>What is Assistive Technology?</h2>
-    <p class="aniamtion">
+    <p class="animation">
       Assistive technologies encompass a broad and ever-evolving range of devices, tools, and software applications
       designed to enhance the independence, productivity, and quality of life for individuals with disabilities or
       impairments. At the most basic level, assistive technologies can include seemingly simple aids like canes,
@@ -33,8 +344,8 @@
       However, the field has advanced dramatically in recent decades, with the integration of cutting-edge electronics,
       robotics, and digital technologies.
     </p>
-    <img src="assistive-technology.png" alt="Assistive Technology" class="floatright">
-    <p class="aniamtion">
+    <img src="assistive-technology.png" alt="Assistive Technology" class="right">
+    <p class="animation">
       One of the hallmarks of modern assistive technologies is their ability to seamlessly integrate with mainstream
       consumer electronics and digital platforms. For example, screen readers and text-to-speech software can allow
       individuals who are blind or have low vision to access information on computers, smartphones, and other digital
@@ -44,7 +355,7 @@
       reducing stigma, expanding access, and promoting greater inclusion.
     </p>
 
-    <p class="aniamtion">
+    <p class="animation">
       Beyond just enhancing access, assistive technologies are also playing a vital role in fostering independence,
       productivity, and social participation for people with disabilities. Powered wheelchairs, for instance, grant
       users the freedom to ambulate and navigate their environments with minimal assistance. Smart home systems
@@ -53,7 +364,7 @@
       assistive tech like screen magnifiers, speech-to-text software, and digital note-taking tools empower students and
       employees to fully engage with learning materials and job responsibilities.
     </p>
-    <p class="aniamtion">
+    <p class="animation">
       The field of assistive technology is also witnessing rapid advancements driven by innovations in artificial
       intelligence, robotics, and human-computer interaction. Emerging technologies like brain-computer interfaces,
       gesture-based controls, and context-aware intelligent assistants hold immense promise for expanding the
@@ -62,7 +373,7 @@
       range of disabilities and impairments.
     </p>
 
-    <p class="aniamtion">
+    <p class="animation">
       However, despite these technological leaps, challenges remain in ensuring equitable access to assistive
       technologies. The high cost of specialized equipment, lack of insurance coverage, and limited availability in
       certain regions continue to create barriers, particularly for marginalized communities. Advocacy efforts, policy
@@ -75,7 +386,7 @@
 
   <section class="shadow">
     <h2>Benefits of Assistive Technology</h2>
-    <p class="aniamtion">
+    <p class="animation">
       Assistive technologies offer a wealth of benefits that can dramatically improve the lives of individuals with
       disabilities and impairments. Perhaps the most fundamental advantage is the enhanced independence and autonomy
       that these tools can provide. By enabling users to perform tasks and navigate their environments with reduced
@@ -84,17 +395,16 @@
       and loved ones to focus on other aspects of support and companionship rather than constantly providing hands-on
       aid.
     </p>
-    <img src="benefits-of-assistive-technology.jpg" alt="Benefits of Assistive Technology">
-    <p class="aniamtion">
+    <p class="animation">
       Closely tied to independence is the way assistive technologies can foster increased participation and inclusion in
       society. From accessing digital information and communications to engaging in educational, professional, and
       recreational pursuits, assistive tools help to break down the barriers that individuals with disabilities have
-      historically faced. Screen readers, speech-generating devices, and alternative computer input methods, for
+      historically faced.    <img src="benefits-of-assistive-technology.jpg" alt="Benefits of Assistive Technology"> Screen readers, speech-generating devices, and alternative computer input methods, for
       example, enable full access to computers, smartphones, and other ubiquitous technologies that are essential for
       learning, working, and social interaction in the modern world. This, in turn, promotes greater equity,
       integration, and the ability for people with disabilities to fully contribute to their communities.
     </p>
-    <p class="aniamtion">
+    <p class="animation">
       Assistive technologies also yield significant benefits in terms of physical, cognitive, and functional outcomes.
       Powered wheelchairs and mobility aids can improve cardiovascular health, muscle tone, and overall physical
       well-being by enabling increased movement and activity. Likewise, communication devices and cognitive support
@@ -104,7 +414,7 @@
       seemed out of reach.
     </p>
 
-    <p class="aniamtion">
+    <p class="animation">
       Beyond the direct benefits to the individual user, assistive technologies also have the power to transform the
       lives of family members, caregivers, and loved ones. By reducing the physical, mental, and emotional toll of
       hands-on assistance, these tools can alleviate caregiver burden and stress, allowing for more quality time and
@@ -113,7 +423,7 @@
       healthcare costs, and greater financial security for both the user and their support network.
     </p>
 
-    <p class="aniamtion">
+    <p class="animation">
       Ultimately, the true value of assistive technologies lies in their ability to promote inclusion, empower personal
       agency, and enhance quality of life for individuals with disabilities. As these innovations continue to advance,
       becoming more sophisticated, personalized, and accessible, their transformative impact will only continue to grow.
@@ -121,10 +431,30 @@
       represent a powerful tool in the pursuit of a more equitable and accessible world for all.
     </p>
   </section>
-
+  </main>
   <footer>
-    <p class="aniamtion">© 2024 Assistive Technologies. All rights reserved.</p>
+    <p>© 2024 Eco-Tech Solutions. All rights reserved.</p>
   </footer>
-</body>
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        // Scrolling up
+        document.getElementById("navbar").style.top = "0";
+      } else {
+        // Scrolling down
+        if (window.matchMedia('(pointer: coarse)').matches) {
+          // Coarse pointer (e.g., touchscreen)
+          document.getElementById("navbar").style.top = "-196px";
+        } else {
+          // Fine pointer (e.g., mouse or trackpad)
+          document.getElementById("navbar").style.top = "-100px";
+        }
+      }
+      prevScrollpos = currentScrollPos;
+    }
+  </script>
 
+</body>
 </html>

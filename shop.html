@@ -1,30 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assistive Technologies</title>
-  <link rel="stylesheet" href="index.css">
-  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="contact.css">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eco-Tech Solutions Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Lato:400);
+  body {
+    font-family: Lato;
+    font-weight: 400;
+    font-size: 24px;
+    color: #10111F;
+    line-height: 1.5;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .line {
+    background-color: #10111F;
+  }
+  /* Variables */
+  :root {
+      --bg: #10111F;
+      --barsize: 15px;
+  }
 
-<body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="tts.html">Products (Beta)</a>
-    <a href="shop.html">Shop</a>
-    <a href="types.html">Types</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="test.html">Test</a>
-  </nav>
-  <header>
-    <h1 style="font-family: 'Major Mono Display', monospace;">Sustainable Assistive Technologies</h1>
-  </header>
-  <footer>
-    <p class="aniamtion">© 2024 Assistive Technologies. All rights reserved.</p>
-  </footer>
-</body>
+  /* General Styling */
+  .hr {
+      width: 100%;
+      height: 1px;
+      display: block;
+      position: relative;
+      margin-bottom: 0em;
+      padding: 2em 0;
+  }
+
+  .hr::before,
+  .hr::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: 50%;
+      left: 0;
+  }
+
+  .hr::before {
+      background: linear-gradient( 90deg, var(--bg) 0%, var(--bg) 50%, transparent 50%, transparent 100% );
+      background-size: var(--barsize);
+      background-position: center;
+      z-index: 1;
+  }
+
+  .hr::after {
+      transition: opacity 0.3s ease, animation 0.3s ease;
+      background: linear-gradient(
+          to right, 
+          #787A97 5%, 
+          #787A97 15%, 
+          #787A97 25%, 
+          #787A97 35%, 
+          #787A97 45%, 
+          #787A97 55%, 
+          #787A97 65%, 
+          #787A97 75%, 
+          #787A97 85%, 
+          #787A97 95%
+      );
+      background-size: 200%;
+      background-position: 0%;
+      animation: bar 15s linear infinite;
+  }
+
+  @keyframes bar {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+  }
+
+  /* Animated State */
+  .hr.anim::before {
+      background: linear-gradient( 
+          90deg, 
+          var(--bg) 0%, var(--bg) 5%, 
+          transparent 5%, transparent 10%, 
+          var(--bg) 10%, var(--bg) 15%, 
+          transparent 15%, transparent 20%, 
+          var(--bg) 20%, var(--bg) 25%,
+          transparent 25%, transparent 30%,
+          var(--bg) 30%, var(--bg) 35%, 
+          transparent 35%, transparent 40%, 
+          var(--bg) 40%, var(--bg) 45%, 
+          transparent 45%, transparent 50%, 
+          var(--bg) 50%, var(--bg) 55%,
+          transparent 55%, transparent 60%,
+          var(--bg) 60%, var(--bg) 65%,
+          transparent 65%, transparent 70%, 
+          var(--bg) 70%, var(--bg) 75%, 
+          transparent 75%, transparent 80%, 
+          var(--bg) 80%, var(--bg) 85%,
+          transparent 85%, transparent 90%,
+          var(--bg) 90%, var(--bg) 95%, 
+          transparent 95%, transparent 100% 
+      );
+      background-size: calc(var(--barsize) * 10);
+      background-position: center;
+      z-index: 1;
+      animation: bar 120s linear infinite;
+  }
+
+  a {
+    color: #10111F;
+    text-decoration: none;
+  }
+  header {
+    background-color: #10111F;
+    padding: 20px;
+    text-align: center;
+  }
+  header h1 {
+    font-family: 'Major Mono Display', monospace;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  h1{
+    font-family: 'Major Mono Display', monospace;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  #navbar {
+      background-color: #10111F;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0; /* Ensures it starts from the left edge */
+      display: block;
+      box-sizing: border-box; /* Include padding and border in total width */
+      transition: top 0.3s;
+      z-index: 1000;
+  }
+
+  #navbar ul {
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+  }
+
+  #navbar li {
+      display: inline-block;
+      margin: 0 10px;
+      list-style-type: none;
+  }
+
+  #navbar .a {
+      color: #696B89;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      text-align: center;
+      font-size: 17px;
+  }
+
+  #navbar .a:hover {
+      background-color: #696B89;
+      color: #10111F;
+  }
+
+  #navbar .a i {
+      font-size: 24px;
+      margin-bottom: 5px;
+  }
+
+  .icon {
+    font-size: 10px;
+  }
+
+  .a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    color: #696B89;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .a i {
+    font-size: 24px; 
+    margin-bottom: 5px; 
+    margin-right: 2px;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #navbar .a span {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        color: white;
+        top: calc(100% + 5px);
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+  
+    #navbar .a:hover span {
+        display: block;
+    }
+    span {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      color: white;
+      top: calc(100% + 5px); /* Position the text below the icons with a little gap */
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap; /* Ensure text doesn't wrap */
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  
+    li:hover span {
+      display: block;
+    }
+  }
+  .hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    margin-bottom: 40px;
+  }
+  .cta {
+    background-color: #10111F;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  .cta:hover {
+    background-color: #fff;
+    color: #10111F;
+  }
+  .shadow {
+    position: relative;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 20px 10px rgba(128, 128, 128, 0.5);
+  }
+  .shadow2 {
+    position: relative;
+    background-color: black;
+    box-shadow: 0 0 20px 10px rgba(128, 128, 128, 0.5);
+  }
+  .features {
+    padding: 80px 20px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+  }
+
+  .feature-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .feature-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  section {
+    margin-bottom: 20px;
+  }
+  footer {
+    background-color: #10111F;
+    color: #fff;
+    padding: 1px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 14px;
+    color: #fff;
+  }
+  .right {
+    float: right;
+  }
+  main {
+    margin-left: 7px; 
+    margin-right: 7px; 
+  }
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px; 
+  }
+  .image-container img {
+    margin-bottom: 20px; 
+  }
+  img {
+    width: 345px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px; 
+    background-color: default;
+  }
+  .cta2 {
+    background-color: #10111F;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  .cta2:hover {
+    background-color: #fff;
+    color: #10111F;
+  }
+  section.shadow {
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center; 
+  }
+  section.shadow img {
+    max-width: 100%; 
+    width: auto; 
+    display: block; 
+    margin: 0 auto; 
+  }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav id="navbar">
+        <ul>
+          <li><a class="a" href="index.html" title="Home"><i class="fas fa-home"></i><span>Home</span></a></li>
+          <li><a class="a" href="tts.html" title="Services"><i class="fas fa-screwdriver-wrench"></i><span>Services</span></a></li>
+          <li><a class="a" href="tts.html" title="Shop"><i class="fas fa-cart-shopping"></i><span>Shop</span></a></li>
+          <li><a class="a" href="types.html" title="Types"><i class="fas fa-wheelchair"></i><span>Types</span></a></li>
+          <li><a class="a" href="about.html" title="About"><i class="fas fa-info-circle"></i><span>About</span></a></li>
+          <li><a class="a" href="contact.html" title="Contact"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+        </ul>
+      </nav>
+      <div style="margin-top: 100px;" class="line">
+        <b class="hr anim"></b>
+      </div>
+      <h1>Eco-Tech Solutions</h1>
+    </header>
+    <main style="padding: 20px">
+      <section class="shadow">
+        <img src="An.png" alt="Image 1">
+        <p style="font-size: 22px;">Sustainable prosthetic limbs are designed to minimize environmental impact by using biodegradable, recyclable, or sustainably sourced materials. They incorporate modular designs and advanced manufacturing techniques like 3D printing to enhance durability and customization while reducing waste. Manufacturers also focus on energy-efficient production and responsible disposal methods, aiming to improve accessibility and long-term sustainability in assistive technology.</p><br>
+        <a class="cta2 shadow floatright" href="https://openbionics.com/hero-arm/" target="_blank">Buy Now!</a>
+        <br><br><br>
+        <img class="right shadow3" src="Aid.png" alt="Image 2">
+        <p>Sustainable hearing aids incorporate eco-friendly materials and energy-efficient technologies, reducing their environmental impact. They focus on durability, easy repair, and affordability, often using rechargeable batteries and recyclable components to enhance sustainability.</p><br><br>
+        <a class="cta2 shadow" href="https://amzn.eu/d/a8DjaVs" target="_blank">Buy Now!</a>
+        <br><br><br>
+        <img class="shadow3" src="Wheel.png" alt="Image 3">
+        <p>Sustainable wheelchairs utilize eco-friendly materials and energy-efficient manufacturing processes to minimize environmental impact. They emphasize durability, easy repair, and affordability, often featuring modular designs and recyclable components for enhanced sustainability.</p>
+        <a class="cta2 shadow" href="https://amzn.eu/d/9toCI8E" target="_blank">Buy Now!</a>
+        <br><br><br>
+      </section>
+    </main>
+    <footer>
+      <p>© 2024 Eco-Tech Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+      var prevScrollpos = window.pageYOffset;
+      window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+          // Scrolling up
+          document.getElementById("navbar").style.top = "0";
+        } else {
+          // Scrolling down
+          if (window.matchMedia('(pointer: coarse)').matches) {
+            // Coarse pointer (e.g., touchscreen)
+            document.getElementById("navbar").style.top = "-196px";
+          } else {
+            // Fine pointer (e.g., mouse or trackpad)
+            document.getElementById("navbar").style.top = "-100px";
+          }
+        }
+        prevScrollpos = currentScrollPos;
+      }
+    </script>
+
+
+  </body>
 </html>
